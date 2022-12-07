@@ -1,0 +1,126 @@
+/* 改变主题色变量 */
+$--color-primary: #684bff;
+/* 改变 icon 字体路径变量，必需 */
+$--font-path: '~element-ui/lib/theme-chalk/fonts';
+@import '~element-ui/packages/theme-chalk/src/index';
+
+.el-input {
+  .el-input__inner {
+    border-radius: 12px;
+
+    &[square] {
+      border-radius: 4px;
+    }
+  }
+
+  &.el-input-group--prepend {
+    .el-input__inner {
+      border-top-left-radius: 0;
+      border-bottom-left-radius: 0;
+    }
+  }
+
+  &.el-input-group--append {
+    .el-input__inner {
+      border-top-right-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+  }
+}
+
+/* 计数框按钮圆角 */
+.el-input-number {
+  .el-input__inner {
+    border-radius: 8px;
+  }
+
+  .el-input-number__decrease {
+    border-top-left-radius: 8px;
+    border-bottom-left-radius: 8px;
+  }
+
+  .el-input-number__increase {
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+  }
+
+  &.is-controls-right {
+    .el-input-number__decrease {
+      border-bottom-right-radius: 8px;
+    }
+
+    .el-input-number__increase {
+      border-top-right-radius: 8px;
+    }
+  }
+}
+
+/* 商品panel pop */
+.goods-panel-pop {
+  width: 250px;
+  background: #4d4d4d;
+  color: white;
+  border-radius: 5px;
+  border: none;
+  line-height: 2;
+
+  .title {
+    padding-left: 8px;
+    width: calc(100% - 100px);
+    line-height: 1.5;
+  }
+
+  &[x-placement^='left'] {
+    .popper__arrow {
+      border-left-color: #4d4d4d;
+
+      &::after {
+        border-left-color: #4d4d4d;
+      }
+    }
+  }
+
+  &[x-placement^='right'] {
+    .popper__arrow {
+      border-right-color: #4d4d4d;
+
+      &::after {
+        border-right-color: #4d4d4d;
+      }
+    }
+  }
+}
+
+.el-backtop {
+  display: flex;
+  padding: 6px;
+  width: fit-content;
+  height: fit-content;
+  flex-direction: column;
+
+  .back-top-word {
+    text-align: center;
+    color: var(--active-color);
+    font-size: 12px;
+    white-space: nowrap;
+  }
+}
+
+.el-menu--collapse .el-menu .el-submenu,
+.el-menu--popup {
+  min-width: unset;
+}
+
+.header-nav {
+  .el-menu.el-menu--horizontal {
+    border-bottom: none;
+  }
+}
+
+.el-button[block] {
+  width: 100%;
+}
+
+.el-table__header-wrapper {
+  overflow: auto;
+}

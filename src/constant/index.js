@@ -1,0 +1,5 @@
+export const RESPONSECODE = {
+    SUCCESS: 200,
+    ERRTOKEN: [10101, 10106, 10107],
+    IGNORE: [17299],
+}

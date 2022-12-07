@@ -1,0 +1,27 @@
+@import './base.scss';
+@import './element-ui.scss';
+@import './iconfont.scss';
+@import './animation.scss';
+
+body {
+  --logo-row-width: 30px;
+  --logo-row-height: 70px;
+  --layout-nav-height: 59px;
+  --layout-header-height: 70px;
+  --layout-dark-bg: #363740;
+  --avtive-txt-color: #ffffff;
+  --layout-main-bg: #f8f8f8;
+  --layout-active-bg: #ffffff;
+  --main-container-width: 100vw;
+  --main-container-max-width: 100%;
+  --active-color: #684bff;
+  --layout-footer-height: 190px;
+  --layout-footer-bg: #5a5a5a;
+  --common-tips-color: #e6a23c;
+}
+
+.href-label {
+  color: var(--active-color);
+  cursor: pointer;
+}
+

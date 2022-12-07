@@ -1,0 +1,207 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+    border-radius: 5px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+a {
+  color: inherit;
+}
+
+a[color] {
+  color: #409eff;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.ju-start {
+  justify-content: flex-start;
+}
+
+.ju-end {
+  justify-content: flex-end;
+}
+
+.ju-center {
+  justify-content: center;
+}
+
+.ju-between {
+  justify-content: space-between;
+}
+
+.ju-around {
+  justify-content: space-around;
+}
+
+.al-base {
+  align-items: baseline;
+}
+
+.al-center {
+  align-items: center;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.al-start {
+  align-items: flex-start;
+}
+
+.al-end {
+  align-items: flex-end;
+}
+
+.flex-1 {
+  flex: 1;
+}
+
+.disabled {
+  cursor: not-allowed;
+}
+
+a {
+  text-decoration: none;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.title-ellipsis {
+  overflow: hidden; //超出的文本隐藏
+  text-overflow: ellipsis; //溢出用省略号显示
+  white-space: nowrap; //溢出不换行
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.form-divider {
+  margin-top: 34px;
+  background-color: transparent;
+
+  .el-divider__text {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--active-color);
+    background: transparent;
+  }
+}
+
+.common-tips {
+  font-size: 14px;
+  color: var(--common-tips-color);
+
+  &.top {
+    margin-top: 16px;
+  }
+}
+
+.el-icon-more {
+  &.table-handle {
+    font-size: 22px;
+    transform: rotateZ(90deg);
+  }
+}
+
+/**
+* 溢出省略号
+* @param {Number} 行数
+*/
+@mixin ellipsis($rowCount: 1) {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  @if $rowCount <=1 {
+    white-space: nowrap;
+  } @else {
+    min-width: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: $rowCount;
+    -webkit-box-orient: vertical;
+  }
+}
+
+@for $i from 1 through 12 {
+  .text-ellipsis-#{$i} {
+    @include ellipsis($i);
+  }
+}
+
+@for $i from 0 through 200 {
+  // 只要双数和能被5除尽的数
+  @if $i % 2 == 0 or $i % 5 == 0 {
+    // 得出：u-margin-30或者u-m-30
+    .margin-#{$i},
+    .m-#{$i} {
+      margin: $i + px !important;
+    }
+    .m-x-#{$i} {
+      margin-left: $i + px !important;
+      margin-right: $i + px !important;
+    }
+    .m-y-#{$i} {
+      margin-top: $i + px !important;
+      margin-bottom: $i + px !important;
+    }
+
+    // 得出：u-padding-30或者u-p-30
+    .padding-#{$i},
+    .p-#{$i} {
+      padding: $i + px !important;
+    }
+    .p-x-#{$i} {
+      padding-left: $i + px !important;
+      padding-right: $i + px !important;
+    }
+    .p-y-#{$i} {
+      padding-top: $i + px !important;
+      padding-bottom: $i + px !important;
+    }
+
+    @each $short, $long in l left, t top, r right, b bottom {
+      // 缩写版，结果如： m-l-30
+      // 定义外边距
+      .m-#{$short}-#{$i} {
+        margin-#{$long}: $i + px !important;
+      }
+
+      // 定义内边距
+      .p-#{$short}-#{$i} {
+        padding-#{$long}: $i + px !important;
+      }
+
+      // 完整版，结果如：u-margin-left-30
+      // 定义外边距
+      .margin-#{$long}-#{$i} {
+        margin-#{$long}: $i + px !important;
+      }
+
+      // 定义内边距
+      .padding-#{$long}-#{$i} {
+        padding-#{$long}: $i + px !important;
+      }
+    }
+  }
+}
