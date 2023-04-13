@@ -76,52 +76,6 @@ export default {
       // 惠浩运输平台官网
       window.open('https://pc.huihaoyun.cn/login.html?v=1324/', '_bank');
     },
-    // upload(num) {
-    //   axios.get('/prod-api/zhaoPin/page').then(res => {
-    //     this.pageNumber = res.data
-    //   })
-    //   axios.get('/prod-api/getWeiHuoPage?num=' + num).then(res => {
-    //     this.zhaoPins = res.data
-    //     this.currentPage = num
-    //   })
-    // },
-    // submit() {
-    //   axios.post('/yingPin/add', this.yingPin).then(res => {
-    //     if (res.data) {
-    //       this.$notify({
-    //         title: '成功',
-    //         message: '成功',
-    //         type: 'success'
-    //       })
-    //       const temp = this.yingPin.zhaoPin.id
-    //       this.yingPin = {
-    //         zhaoPin: { id: temp },
-    //         id: -1,
-    //         name: '',
-    //         sex: 1,
-    //         birthYear: 0,
-    //         education: 0,
-    //         school: '',
-    //         phone: '',
-    //         skill: ''
-    //       }
-    //     }
-    //     else
-    //       this.$notify({
-    //         title: '警告',
-    //         message: '失败',
-    //         type: 'warning'
-    //       })
-    //   },
-    //     () => {
-    //       this.$notify({
-    //         title: '警告',
-    //         message: '失败',
-    //         type: 'warning'
-    //       })
-    //     }
-    //   )
-    // }
   },
   mounted() {
   },

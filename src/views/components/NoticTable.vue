@@ -3,17 +3,16 @@
     <div class="flex ju-between">
       <div class="flex-1 handle-more">
         <div class="through frist"></div>
-        <router-link :to="{ name: 'gonglue', params: { type: this.type, title: this.title } }" class="more-btn">
-          <img src="../../assets/images/n-more.jpg">
-        </router-link>
+        <img src="../../assets/images/n-more.jpg" @click="RouterTo">
         <div class="through last"></div>
       </div>
     </div>
-
   </div>
 </template>
 
 <script>
+import router from "@/router";
+
 export default {
   props: {
     title: {
@@ -24,12 +23,30 @@ export default {
       type: String,
       default: '',
     },
-
+  },
+  components: {
+  },
+  data() {
+    return {}
   },
   mounted() {
 
   },
-  methods: {},
+  methods: {
+    RouterTo() {
+      if (this.title === "信息管理平台视频") {
+        router.push({
+          name: "list",
+          params: {type: this.type, title: this.title}
+        })
+      } else {
+        router.push({
+          name: "gonglue",
+          params: {type: this.type, title: this.title}
+        })
+      }
+    }
+  },
 }
 </script>
 <style lang="scss" scoped>
@@ -67,5 +84,9 @@ export default {
   user-select: none;
   position: relative;
   margin: auto 0;
+}
+
+img:hover {
+  cursor: pointer;
 }
 </style>

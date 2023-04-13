@@ -29,7 +29,7 @@
       <template>
         <el-carousel indicator-position="outside" style="width:100%;height:100px;" height="90px">
           <el-carousel-item v-for="(item, index) in homecarousel" :key="index">
-            <img :src="item" style="height: 100px;width:100%;"/>
+            <img :src="item.img" style="height: 100px;width:100%;" @click="to(item.url)"/>
           </el-carousel-item>
         </el-carousel>
       </template>
@@ -39,7 +39,7 @@
       <!--      <span class="firstTitle">通知公告/</span><span class="secondTitle">最新的通知，了解最新政策详情</span>-->
       <!--      <el-divider content-position="right"><router-link to="/gonglue">更多通知</router-link></el-divider>-->
       <div class="notic-container">
-        <div v-for="(item, index) in announcement" :key="index">
+        <div v-for="(item, index) in announcement" :key="index.toString()">
           <div class="title">
             <div class="font size" @click="detailed">{{ item.title }}</div>
             <notic-table :type="item.content[0].type" :title="item.title" class="notic-item"/>
@@ -48,12 +48,12 @@
         </div>
         <div class="backcolor">
           <div class="title ">
-            <div class="fonts font-color size">物流大数据视频</div>
-            <notic-table class="notic-item"/>
+            <div class="fonts font-color size">管理平台介绍</div>
+            <notic-table :type="this.viodes" class="notic-item" title="信息管理平台视频"/>
           </div>
           <div class="notic-padding">
-            <!-- <img style="width:334px;height:220px;margin:;" src="/img/first1.jpg"> -->
             <video controls>
+              <source :src="this.viodes[0].video">
             </video>
           </div>
         </div>
@@ -63,8 +63,9 @@
           <div class="recruit-frist">
             <h2>公共招聘</h2>
             <div class="title">
-              <el-tabs style="width:400px;height: 260px;" value="0">
-                <el-tab-pane :label="item.title" :name="index" v-for="(item, index) in recruit" :key="index">
+              <el-tabs style="width:20vw;height: 17vw;" value="0">
+                <el-tab-pane v-for="(item, index) in recruit" :key="index.toString()" :label="item.title"
+                             :name="index.toString()">
                   <notic-list :list="item.content" class="notic-item"/>
                   <!-- {{ item.content }} -->
                 </el-tab-pane>
@@ -77,23 +78,24 @@
                 </div>
                 <div>便民服务热线：12345</div>
                 <div>宁东基地总值班室：0951-3093761</div>
-                <div>应急值班电话：0951-5918503 18995098099</div>
+                <div>应急值班电话：0951-5918503</div><!-- 18995098099 -->
                 <div>电子邮箱：ndjdgwh@126.com</div>
-                <div>联系地址：宁夏宁东镇长城路7号企业总部大楼</div>
+                <!--                <div>联系地址：宁夏宁东镇长城路7号企业总部大楼</div>-->
               </div>
             </div>
           </div>
           <div class="enter">
             <div class="title">
-              <div class="title size" style="width:500px;">
+              <div class="title size" style="width:31vw;">
                 <div class="font-color">走进</div>
-                <div class="enter-font">宁东物流大数据平台</div>
+                <div class="enter-font">公共信息管理平台</div>
               </div>
               <notic-table class="notic-item" title="最新通知" more-target="gonglue"/>
             </div>
             <div>
-              <el-tabs style="width:100%;height:200px;" value="0">
-                <el-tab-pane v-for="(item, index) in entertab" :key="index" :label="item.labels" :name="index">
+              <el-tabs style="width:100%;height:25vh;" value="0">
+                <el-tab-pane v-for="(item, index) in entertab" :key="index.toString()" :label="item.labels"
+                             :name="index.toString()">
                   <div class="flex">
                     <img style="width:180px;height:106px;margin:3%;" :src="item.img">
                     <div style="margin-top:3%;">
@@ -106,11 +108,12 @@
                 </el-tab-pane>
               </el-tabs>
             </div>
-            <el-tabs style="width:100%;height: 200px;" value="0">
-              <el-tab-pane :label="item.title" :name="index" v-for="(item, index) in platform" :key="index">
+            <el-tabs style="width:100%;height:30vh;margin-top: 4%" value="0">
+              <el-tab-pane v-for="(item, index) in platform" :key="index.toString()" :label="item.title"
+                           :name="index.toString()">
                 <div class="flex">
                   <div>
-                    <img style="width:350px;height:188px;margin:3%;" :src="item.img">
+                    <img :src="item.img" style="width:20vw;height:188px;margin:3%;">
                   </div>
                   <div class="pane-notic">
                     <notic-list :list="item.content" class="notic-item"/>
@@ -158,8 +161,6 @@
 
 <script>
 import axios from 'axios'
-/*import AnLi from "./JianGuan"
-import GoodDesigner from '../indexPages/GoodDesigner'*/
 import NoticTable from '@/views/components/NoticTable.vue'
 import NoticList from '@/views/components/NoticList.vue'
 import IntroDuce from '@/views/show/IntroduceMe'
@@ -174,6 +175,11 @@ export default {
   },
   data() {
     return {
+      viodes: [
+        {
+          video: 'http://43.142.179.198/video/OpenEmpowerment.mp4'
+        }
+      ],
       activeIndex: '1',
       information: [
         {
@@ -229,30 +235,56 @@ export default {
         },
       ],
       brief: {
-        title: '宁东物流大数据平台简介',
-        content: '宁东能源化工基地（以下简称宁东基地）是国务院批准的国家重点开发区，是国家重要的大型煤炭生产基地、“西电东送”火电基地、煤化工产业基地和循环经济示范区，是国家产业转型升级示范区、现代煤化工产业示范区、新型工业化产业示范基地和外贸转型升级基地，也是宁夏高质量发展示范区、高新技术产业开发区和化工园区。宁夏宁夏回族自治区人民政府《关于宁东能源化工基地现代煤化工产业示范区总体规划的批复》（宁政函〔2019〕49号）中提出：建成以煤制烯烃、乙二醇项目为龙头，发展通用树脂、合成橡胶、工程塑料及专用化学品等下游特色产业，形成具有较强竞争力的产业链和产业集群，着力推动现代煤化工产业创新发展，构建现代煤化工产业体系，打造技术领先、行业领军、世界一流的国家级现代煤化工产业示范区，为推进全区高质量发展和国家能源战略安全作出新的更大贡献。《宁东能源化工基地“十四五”发展规划》提出：加快建设数字化产业服务平台，实施宁东基地工业互联网发展和工业大脑建设项目，完成企业数字化转型和园区产业数字化，构建全要素、全产业链、全价值链全面连接的新型工业生产制造和服务体系，实现智能化生产、网络化协同、个性化定制、服务化延伸，支持第三方服务机构建立集营商服务、金融服务、科技服务、研发服务、商务服务、公共服务等为一体的开放性数字化公共服务平台，形成上下游产业链数字化、网络化、智能化协同创新的产业级工业互联网平台。强化危化品全链条管理，建立健全危化品安全生产责任链条，实施全链条、全流程、全风险安全监管，坚决防范较大及以上事故发生，有力防范化解危险化学品系统性安全风险。宁东物流大数据平台定位：建设宁东煤化工产业互联网服务平台，运用先进的信息技术，构建全要素、全产业链、全价值链的产业级工业互联网平台，推动宁东煤化工产业的数智化转型。利用区块链、物联网、北斗定位、移动互联网等先进技术，依托宁东煤化工产业链优势，打造宁东物流大数据平台，实现一下目标：（1）构建支持危化品货物运输的核心业务流程，支持多级调度、线上竞价、双重运输、客户互动、安全监控以及应急管理的危化品运输管理平台；（2）构建对危化品货物运输全流程监管的政府监管大数据平台；（3）对危化品的端到端物流管理，实现危化品运输全过程的可溯源管理；（4）构建平台-车队、车队-车辆两级托单调度体系；（5）支持双重、多级调度、线上竞价等业务模式，降低运输成本。'
+        title: '宁东基地物流公共信息管理平台平台简介',
+        content: '宁东能源化工基地（以下简称宁东基地）是国务院批准的国家重点开发区，是国家重要的大型煤炭生产基地、“西电东送”火电基地、煤化工产业基地和循环经济示范区，是国家产业转型升级示范区、现代煤化工产业示范区、新型工业化产业示范基地和外贸转型升级基地，也是宁夏高质量发展示范区、高新技术产业开发区和化工园区。宁夏宁夏回族自治区人民政府《关于宁东能源化工基地现代煤化工产业示范区总体规划的批复》（宁政函〔2019〕49号）中提出：建成以煤制烯烃、乙二醇项目为龙头，发展通用树脂、合成橡胶、工程塑料及专用化学品等下游特色产业，形成具有较强竞争力的产业链和产业集群，着力推动现代煤化工产业创新发展，构建现代煤化工产业体系，打造技术领先、行业领军、世界一流的国家级现代煤化工产业示范区，为推进全区高质量发展和国家能源战略安全作出新的更大贡献。《宁东能源化工基地“十四五”发展规划》提出：加快建设数字化产业服务平台，实施宁东基地工业互联网发展和工业大脑建设项目，完成企业数字化转型和园区产业数字化，构建全要素、全产业链、全价值链全面连接的新型工业生产制造和服务体系，实现智能化生产、网络化协同、个性化定制、服务化延伸，支持第三方服务机构建立集营商服务、金融服务、科技服务、研发服务、商务服务、公共服务等为一体的开放性数字化公共服务平台，形成上下游产业链数字化、网络化、智能化协同创新的产业级工业互联网平台。强化危化品全链条管理，建立健全危化品安全生产责任链条，实施全链条、全流程、全风险安全监管，坚决防范较大及以上事故发生，有力防范化解危险化学品系统性安全风险。宁东基地物流公共信息管理平台定位：建设宁东煤化工产业互联网服务平台，运用先进的信息技术，构建全要素、全产业链、全价值链的产业级工业互联网平台，推动宁东煤化工产业的数智化转型。利用区块链、物联网、北斗定位、移动互联网等先进技术，依托宁东煤化工产业链优势，打造宁东基地物流公共信息管理平台，实现一下目标：（1）构建支持危化品货物运输的核心业务流程，支持多级调度、线上竞价、双重运输、客户互动、安全监控以及应急管理的危化品运输管理平台；（2）构建对危化品货物运输全流程监管的政府监管大数据平台；（3）对危化品的端到端物流管理，实现危化品运输全过程的可溯源管理；（4）构建平台-车队、车队-车辆两级托单调度体系；（5）支持双重、多级调度、线上竞价等业务模式，降低运输成本。'
       },
       temporary: '',
       title: '',
       dynamic: [],
-      homecarousel: [require('@/assets/home_img/homecarousel.jpg'), require('@/assets/home_img/homecarousel2.jpg')],
+      homecarousel: [
+        {
+          img: 'http://ningdong.nx.gov.cn/ztxc/202210/W020221028853120264965.jpg',
+          url: 'http://ningdong.nx.gov.cn/xwdt_277/nddt/202210/t20221016_3806562.html'
+        }, {
+          img: 'http://ningdong.nx.gov.cn/ztxc/202209/W020220924752473138821.png',
+          url: 'http://www.gov.cn/zhuanti/zswzjjylzzccs/index.htm'
+        }, {
+          img: 'http://ningdong.nx.gov.cn/ztxc/202012/W020220727393152960199.jpg',
+          url: 'http://ningdong.nx.gov.cn/xwdt_277/nddt/202206/t20220616_3573596.html'
+        }, {
+          img: 'http://ningdong.nx.gov.cn/ztxc/202204/W020220415575678592857.jpg',
+          url: ''
+        }, {
+          img: 'http://ningdong.nx.gov.cn/ztxc/202112/W020211208409361479182.png',
+          url: 'https://zljdj.ndkcpip.cn:8010/ServicePlatform/homePage.do'
+        }, {
+          img: 'http://ningdong.nx.gov.cn/ztxc/202104/W020210402430433032301.jpg',
+          url: 'http://ningdong.nx.gov.cn/ztzl/dsxxjy/'
+        }, {
+          img: 'http://ningdong.nx.gov.cn/ztxc/202012/W020210118552774863590.jpg',
+          url: 'http://zwfw.nx.gov.cn/ndq/'
+        }, {
+          img: 'http://ningdong.nx.gov.cn/ztxc/202011/W020210118563445892057.jpg',
+          url: ''
+        },
+      ],
       bannerPictures: [
         {
-          img: require('@/assets/index/first1.jpg'),
-          title: '中共中央办公厅 国务院办公厅印发《“十四五”文化发展规划》',
-          content: 'http://www.gov.cn/zhengce/2022-08/16/content_5705612.htm',
+          img: 'http://ningdong.nx.gov.cn/xwdt_277/202302/W020230216774336196336.jpg',
+          title: '科创宁东',
+          content: 'http://ningdong.nx.gov.cn/ztzl/kcnd/',
           date: ''
         },
         {
-          img: require('@/assets/index/first2.jpg'),
-          title: '国务院关于取消和调整一批罚款事项的决定',
-          content: 'http://www.gov.cn/zhengce/content/2022-08/12/content_5705137.htm',
+          img: "http://ningdong.nx.gov.cn/xwdt_277/202303/W020230306365515915162.jpg",
+          title: '最全！一图读懂2023年《政府工作报告》',
+          content: 'http://www.gov.cn/xinwen/2023-03/05/content_5744713.htm',
           date: ''
         },
         {
-          img: require('@/assets/index/first3.jpg'),
-          title: '宁东基地：“一月一调度”为企业解难题 力促项目早投产早达效',
-          content: 'https://mp.weixin.qq.com/s/IHf6mZ6RyujU-6zzFxbFVQ',
+          img: 'http://ningdong.nx.gov.cn/xwdt_277/nddt/202303/W020230311609479015319.png',
+          title: '一图读懂国务院机构改革方案',
+          content: 'https://www.nx.gov.cn/zwxx_11337/wzttx/202303/t20230309_3988843.html',
           date: ''
         }
       ],
@@ -266,7 +298,12 @@ export default {
     stateCouncil(i) {
       this.dynamic = []
       for (let index = 0; index < 3; index++) {
-        axios.get(`http://43.142.179.198:8081/noticeList/get?type=${index + 1}`).then(res => {
+        axios.post("http://43.142.179.198:8081/noticeList/get",null,{
+          params:{
+            type:(index+1).toString(),
+            ftype:"1001"
+          }
+        }).then(res => {
           // this.announcement[i].content = res.data
           if (i == index) {
             if (res.data.length >= 8) {
@@ -285,9 +322,13 @@ export default {
     detailed() {
       for (let i = 0; i < 15; i++) {
         if (i <= 2) {
-          axios.get(`http://43.142.179.198:8081/noticeList/get?type=${i + 1}`).then(res => {
+          axios.post("http://43.142.179.198:8081/noticeList/get",null,{
+            params:{
+              type:(i+1).toString(),
+              ftype:"1001"
+            }
+          }).then(res => {
             this.information[i].content = res.data
-            // console.log(this.information,123);
             if (i == 0) {
               if (res.data.length >= 8) {
                 for (let index = 0; index <= 8; index++) {
@@ -297,18 +338,15 @@ export default {
               } else {
                 this.dynamic = res.data
               }
-              // console.log(res,123)
-              for (let j = 0; j < this.bannerPictures.length; j++) {
-                console.log(res.data[j])
-                this.bannerPictures[j].title = res.data[j].title
-                this.bannerPictures[j].content = res.data[j].content
-                this.bannerPictures[j].date = res.data[j].date
-              }
             }
           })
-        }
-        if (i == 3 || i == 4) {
-          axios.get(`http://43.142.179.198:8081/noticeList/get?type=${i + 1}`).then(res => {
+        }else if (i == 3 || i == 4) {
+          axios.post("http://43.142.179.198:8081/noticeList/get",null,{
+            params:{
+                type:(i + 1).toString(),
+              ftype: '1001'
+            }
+          }).then(res => {
             // this.announcement[i].content = res.data
             if (i == 3) {
               if (res.data.length >= 8) {
@@ -328,9 +366,13 @@ export default {
               }
             }
           })
-        }
-        if (i == 5 || i == 6) {
-          axios.get(`http://43.142.179.198:8081/noticeList/get?type=${i + 1}`).then(res => {
+        }else if (i == 5 || i == 6) {
+          axios.post("http://43.142.179.198:8081/noticeList/get",null,{
+            params:{
+              type:(i + 1).toString(),
+              ftype: '1001'
+            }
+          }).then(res => {
             if (i == 5) {
               if (res.data.length >= 5) {
                 for (let index = 0; index <= 5; index++) {
@@ -349,10 +391,13 @@ export default {
               }
             }
           })
-        }
-
-        if (i == 12 || i == 13) {
-          axios.get(`http://43.142.179.198:8081/noticeList/get?type=${i + 1}`).then(res => {
+        }else if (i == 12 || i == 13) {
+          axios.post("http://43.142.179.198:8081/noticeList/get",null,{
+            params:{
+              type:(i + 1).toString(),
+              ftype: '1001'
+            }
+          }).then(res => {
             if (i == 12) {
               this.platform[0].content = res.data
             } else {
@@ -371,6 +416,11 @@ export default {
               empty: 2
             }
           })
+    },
+    to(url) {
+      if (url !== '') {
+        window.open(url, '_blank')
+      }
     },
     routers(list) {
       this.str = list.content;
@@ -423,8 +473,8 @@ export default {
 }
 
 .index-carousel {
-  width: 586px;
-  height: 330px;
+  width: 32vw;
+  height: 42vh;
 
   span {
     width: 100%;
@@ -440,14 +490,14 @@ export default {
 }
 
 .index-table {
-  width: 546px;
-  height: 330px;
+  width: 35vw;
+  height: 20vh;
   margin-left: 2%;
 }
 
 .notic-container {
   width: 95%;
-  height: 280px;
+  height: 40vh;
   display: flex;
   justify-content: space-between;
 
@@ -456,26 +506,31 @@ export default {
   }
 
   div {
-    width: 350px;
+    width: 18vw;
     margin-right: 5%;
 
     div {
       width: 100%;
 
       .font {
-        width: 30%;
+        width: 40%;
         text-align: center;
+        font-size: 2vh;
       }
     }
   }
 
   .notic-padding {
-    padding: 15px;
-    margin-top: 10%;
+    //height:90%;
+    ////margin-top: 10%;
+    //background: #f2f2f2;
   }
 
   video {
-    width: 300px;
+    width: 17vw;
+    height: 33vh;
+    margin-top: -13%;
+    margin-left: 3%;
   }
 
   .font {
@@ -520,12 +575,12 @@ export default {
   margin-top: 30px;
 }
 
-#goto-net {
-  min-height: 260px;
-}
+//#goto-net {
+//  min-height: 10vw;
+//}
 
 #net-container {
-  width: 1160px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -539,12 +594,15 @@ export default {
 
 .nxzw-guess .nxzw-guess-list {
   list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
 }
 
 .nxzw-guess .nxzw-guess-list .item-li {
-  float: left;
-  width: 325px;
-  height: 60px;
+  //float: left;
+  width: 15vw;
+  height: 6vh;
   line-height: 60px;
   margin: 15px 30px;
   text-align: center;
@@ -654,29 +712,29 @@ a {
 
 .recruit {
   margin-top: 4%;
-  margin-bottom: 2%;
+  margin-bottom: 8%;
 
   .enter {
     width: 100%;
     margin-left: 3%;
-    height: 520px;
+    //height: 60v;
 
     .enter-font {
-      margin-right: 50px;
+      margin-right: 4vw;
     }
 
     .pane-notic {
-      margin-left: 3%;
-      width: 300px;
-      height: 192px;
+      margin-left: 1%;
+      width: 14vw;
+      height: 20vh;
       font-size: 15px;
       font-family: 'Microsoft YaHei';
     }
   }
 
   .recruit-frist {
-    width: 600px;
-    height: 520px;
+    width: 23vw;
+    height: 32vw;
     border: solid 1px #e5e5e5;
     background-color: #f4f4f4;
     padding: 2%;
@@ -687,6 +745,7 @@ a {
     margin: auto;
     background-color: #fff;
     padding: 10px;
+    margin-top: 1vh;
 
     div {
       font-size: 14px;
@@ -743,27 +802,26 @@ a {
 }
 
 .backcolor {
-  background-color: #f2f2f2;
   height: 310px;
 
   .font-color {
-    width: 100px;
-    height: 30px;
+    width: 25vw;
+    height: 3vh;
     text-align: center;
     background: #0068b7;
     color: white;
-    margin-right: 10px;
+    margin-right: 1vw;
     line-height: 30px;
   }
 
   .fonts {
-    width: 100%;
+    //width: 100%;
     text-align: center;
   }
 }
 
 .size {
-  font-size: 18px;
+  font-size: 2vh;
   font-weight: 600;
 }
 

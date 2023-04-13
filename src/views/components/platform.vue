@@ -35,7 +35,7 @@
     </div>
     <div class="platform-box flex wrap">
       <div v-for="(item, index) in this.city" :key="index" class="platform-each">
-        <div v-if="bool" class="supervise supervise-flex">
+        <div v-if="bool" class="supervise supervise-flex" @click="gotoPlat(item.webUrl)">
           <div class="supervise-box">
             <div>
               <div class="supervise-log">
@@ -50,7 +50,6 @@
       </div>
       <el-empty :class="this.bool === false ? 'center':'none'" :image-size="200"></el-empty>
     </div>
-
   </div>
 </template>
 
@@ -154,7 +153,7 @@ export default {
   width: 100%;
   height: 100%;
   border: 1px solid rgba(29, 107, 204, 0.15);
-  border-radius: 20px;
+  border-radius: 10%;
   box-shadow: 0 1px 8px 1px rgb(29 107 204 / 30%);
 
   .supervise-log {
@@ -188,16 +187,13 @@ export default {
 
   .supervise-box {
     width: 100%;
-    margin-right: 3%;
-    margin-top: 4%;
+    border-radius: 10%;
   }
 
   .supervise-box:hover {
     background-color: #0068b7;
     color: white;
   }
-
-
 }
 
 .anliP {

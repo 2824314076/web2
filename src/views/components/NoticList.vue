@@ -28,36 +28,7 @@ export default {
     this.tabletitle()
   },
   methods: {
-    // handleCurrent(content){
-    //   if (content == '') {
-    //     this.$router.push({
-    //       name: 'introduce',
-    //       params: {
-    //         list: "暂无内容",
-    //         empty: 1
-    //       }
-    //     })
-    //   } else if (this.str !== null) {
-    //     window.open(content, '_blank')
-    //   } else {
-    //     this.$router.push({
-    //       name: 'introduce',
-    //       params: {
-    //         list: this.list[i],
-    //         empty: 2
-    //       }
-    //     })
-    //   }
-    // },
     handleCurrentChange(id) {
-      // str = str.match(/http:\/\/.+/);
-      // if (str == null){
-      //  alert('你输入的URL无效');
-      //  return false;
-      // }else{
-      //  alert("你输入的URL有效");
-      //  return true;
-      // }
       for (let i = 0; i < this.list.length; i++) {
         this.str = this.list[i].content;
         this.str = this.str.match(/^http[s]?:\/\/.*/);

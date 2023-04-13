@@ -159,6 +159,33 @@ export default [
                     title: '后台',
                 },
             },
+            {
+                name: 'list',
+                path: 'list',
+                component: () =>
+                    import(/* webpackChunkName: "show" */ '@/views/show/list.vue'),
+                meta: {
+                    title: '后台',
+                },
+            }, {
+                name: 'Enterprise',
+                path: 'Enterprise',
+                component: () =>
+                    import(/* webpackChunkName: "show" */ '@/views/show/Enterprise.vue'),
+                meta: {
+                    title: '政策',
+                },
+            },
+            {
+                name: 'enterprises',
+                path: 'enterprises',
+                component: () =>
+                    import(/* webpackChunkName: "show" */ '@/views/enterprise/enterprises.vue'),
+                meta: {
+                    title: '政策',
+                },
+            },
+
         ],
     },
 

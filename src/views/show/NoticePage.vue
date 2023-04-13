@@ -20,9 +20,6 @@ export default {
     }
   },
   mounted() {
-    // axios.get(sessionStorage.getItem('url')).then(res=>{
-    //     this.notice=res.data
-    // })
   }
 }
 </script>

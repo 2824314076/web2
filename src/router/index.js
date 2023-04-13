@@ -1,10 +1,12 @@
 import VueRouter from 'vue-router'
 import console from './console'
 import show from './show'
+import enterprises from "./enterprises"
 
 const routes = [
     ...show,
     ...console,
+    ...enterprises,
     {
         path: '/404',
         name: '404',

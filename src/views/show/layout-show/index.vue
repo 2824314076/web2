@@ -32,15 +32,24 @@
     </div>
     <div class="header">
       <el-menu :default-active="$route.name" class="header-menu" mode="horizontal" @select="handleSelect"
-               active-text-color="white" text-color="white">
+               active-text-color="white" background-color="#409EFF" text-color="white">
         <!--1.1982d1 3.ffd04b 2.white-->
         <!--        <el-menu-item><img src="/img/logo.png"/></el-menu-item>-->
         <el-menu-item index="index">首页</el-menu-item>
-        <el-menu-item index="jianguan">监管平台</el-menu-item>
-        <el-menu-item index="weihuo">危货运输</el-menu-item>
-        <el-menu-item index="puhuo">普货运输</el-menu-item>
-        <el-menu-item index="tielu">公铁联运</el-menu-item>
-        <el-menu-item index="keyun">客运运输</el-menu-item>
+        <el-menu-item index="jianguan">管理平台</el-menu-item>
+        <el-submenu index="2">
+          <template slot="title">宁东各局</template>
+          <el-menu-item class="hover"><a href="http://sztoosun.com:8205/#/login?redirect=%2Fhome">建设和交通局</a>
+          </el-menu-item>
+          <el-menu-item class="hover">科技和信息局</el-menu-item>
+        </el-submenu>
+        <el-submenu index="3">
+          <template slot="title">综合运输</template>
+          <el-menu-item class="hover" index="weihuo">危货运输</el-menu-item>
+          <el-menu-item class="hover" index="puhuo">普货运输</el-menu-item>
+          <el-menu-item class="hover" index="tielu">公铁联运</el-menu-item>
+          <el-menu-item class="hover" index="keyun">客运运输</el-menu-item>
+        </el-submenu>
         <el-menu-item index="maoyi">大宗贸易</el-menu-item>
         <el-menu-item index="thirdservice">第三方服务</el-menu-item>
       </el-menu>
@@ -76,6 +85,7 @@
 
 <script>
 import axios from 'axios'
+import "@/views/show/layout-show/index.scss"
 
 export default {
   name: 'IndexPage',
@@ -102,14 +112,6 @@ export default {
       this.$route.push({name: 'admin'})
     },
     handleSelect(key) {
-      // if (
-      //   key === 'tielu' ||
-      //   key === 'keyun' ||
-      //   key === 'maoyi' ||
-      //   key === 'thirdservice'
-      // )
-      //   this.$message({ message: '此功能暂未开放！', type: 'warning' })
-      // else
       this.$router
           .push({
             name: key,
@@ -167,6 +169,9 @@ export default {
 
     .header-menu {
       border: none;
+    }
+    .el-menu{
+      width: 64%;
     }
   }
 }
@@ -249,22 +254,33 @@ a {
 .el-menu {
   width: 80%;
   background-color: rgba(0, 104, 183, 1);
+  padding: 0 !important;
 }
 
-.el-menu-item {
+.el-menu-item, .el-submenu {
   font-size: 16px !important;
   font-weight: 600;
-  width: 12.5%;
+  width: 16.6666%;
   text-align: center;
 }
 
+//.jianguan{
+//  width: 15%;
+//  padding-left:0.5vw;
+//  padding-left:0.5vw;
+//}
 .el-menu--horizontal > .el-menu-item.is-active {
   border-bottom: none;
-  background: #409EFF !important;
 }
 
-.el-menu .el-menu-item:hover {
-  background-color: #409EFF !important;
+.hover {
+  width: 10.5vw;
+  margin: 0;
+  padding: 0;
+
+  :hover {
+    width: 100%;
+  }
 }
 
 .layout-log {
@@ -321,4 +337,18 @@ a {
 #top-bar-right {
   margin-top: 5%;
 }
+
+::v-deep .el-submenu__title {
+  font-size: 16px !important;
+  font-weight: 600;
+}
+
+::v-deep .el-submenu__icon-arrow {
+  display: none;
+}
+
+.el-main {
+  padding: 0;
+}
+
 </style>

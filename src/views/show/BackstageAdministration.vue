@@ -87,22 +87,6 @@ export default {
   },
   methods: {
     upload() {
-      // 43.142.179.198:8081/v1/picture/push
-      // axios.post('http://43.142.179.198:8081/v1/picture/push',{data:{
-      //     file:this.corporate.fileList[0],
-      //     webName:this.corporate.name,
-      //     webUrl:this.corporate.address,
-      //     adcode:this.adcode.toString(),
-      //     type:this.corporate.type,
-      //   }}).then((res) => {
-      //   if (res.data.success){
-      //     this.$message.success('成功')
-      //   }else {
-      //     this.$message.error(res.data.msg)
-      //   }
-      // }).catch((e)=>{
-      //   this.$message.error('成功',e)
-      // })
     },
     exceed() {
       this.$message.error('仅允许上传一个图片');
@@ -113,10 +97,8 @@ export default {
       console.log(this.corporate.adcode)
     },
     adcodeMap() {
-      // 43.142.179.198:8081/area/all
       axios.post('http://43.142.179.198:8081/area/all').then(res => {
         this.options = res.data.data.list
-        console.log(this.options)
       })
     }
   }

@@ -54,24 +54,51 @@ export default {
   },
   mounted() {
     //  this.upload(1)
-    this.type = this.$route.params.type
     this.title = this.$route.params.title
-    this.handlefilter(this.$route.params.list)
+    if ( this.title !== undefined){
+      this.type = this.$route.params.type
+      window.sessionStorage.setItem("titles", JSON.stringify(this.title));
+      window.sessionStorage.setItem("types", JSON.stringify(this.type));
+      window.sessionStorage.setItem("lists", JSON.stringify(this.list));
+
+    } else {
+      this.title= JSON.parse(window.sessionStorage.getItem("titles"))
+      this.type = JSON.parse(window.sessionStorage.getItem("types"))
+      this.list = JSON.parse(window.sessionStorage.getItem("lists"))
+    }
+    if (this.$route.params.list !== undefined){
+      this.list = this.$route.params.list
+    }else {
+      this.detailed()
+    }
+    this.handlefilter(this.list)
     this.paging.total = this.list.length
-    this.detailed()
     this.handleSizeChange(this.paging.page_sizes[0])
   },
   methods: {
     detailed() {
+      let ftype = '1001'
       if (this.type !== '') {
-        axios.get(`http://43.142.179.198:8081/noticeList/get?type=${this.type}`).then(res => {
+        if (this.type > 100){
+          ftype = '1002'
+        }
+        console.log(ftype)
+        axios.post(`http://43.142.179.198:8081/noticeList/get`,null,{
+          params:{
+            type:this.type,
+            ftype:ftype
+          }
+        }).then(res => {
           this.list = res.data
           this.paging.total = this.list.length
           this.handlefilter(this.list)
+          window.sessionStorage.setItem("lists", JSON.stringify(this.list));
         })
       } else {
         this.list = []
       }
+      // console.log(this.list)
+      console.log(this.title)
     },
     handlefilter(val) {
       if (val) {
