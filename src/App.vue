@@ -10,7 +10,6 @@ export default {
   components: {},
 }
 </script>
-
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -66,5 +65,21 @@ export default {
 
 .ql-indent-8 {
   padding-left: 128px;
+}
+
+/* CDN 服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
+@font-face {
+  font-family: 'iconfont';  /* Project id 4043722 */
+  src: url('//at.alicdn.com/t/c/font_4043722_sw3mhu7p35c.woff2?t=1682654051852') format('woff2'),
+  url('//at.alicdn.com/t/c/font_4043722_sw3mhu7p35c.woff?t=1682654051852') format('woff'),
+  url('//at.alicdn.com/t/c/font_4043722_sw3mhu7p35c.ttf?t=1682654051852') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 </style>

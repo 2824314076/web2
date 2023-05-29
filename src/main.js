@@ -1,3 +1,4 @@
+//组件
 import Vue from 'vue'
 import App from './App.vue'
 import VueRouter from 'vue-router'
@@ -10,7 +11,14 @@ import Vue2Editor from 'vue2-editor'
 import axios from 'axios'
 import '@/styles/index.scss'
 import '@/permission'
+import  VueQuillEditor from 'vue-quill-editor'//调用编辑器
 
+//样式
+import 'quill/dist/quill.core.css'
+import 'quill/dist/quill.snow.css'
+import 'quill/dist/quill.bubble.css'
+
+//使用
 Vue.config.productionTip = false
 
 Object.keys(filters).forEach((key) => {
@@ -20,23 +28,9 @@ Vue.use(VueRouter)
 Vue.use(ElementUI)
 Vue.use(VueWechatTitle)
 Vue.use(Vue2Editor)
+Vue.use(VueQuillEditor)
 axios.defaults.baseURL = '/api'
 Vue.prototype.HOST = '/api'
-//axios.defaults.headers.common['token'] = sessionStorage.getItem("token")
-// axios.create({
-//   baseURL: process.env.NOED_ENV==='development'?'dev-api':'/prod-api'
-// })
-// axios.interceptors.request.use((config) => {
-//   if (['/admin'].indexOf(config.url) === -1) {
-//     const token = sessionStorage.getItem('token')
-//     if (token) {
-//       //config.headers.Authorization = token
-//       config.headers.token = token
-//     }
-//   }
-//   return config
-// })
-// Vue.prototype.$axios = axios
 new Vue({
     render: (h) => h(App),
     router: router,

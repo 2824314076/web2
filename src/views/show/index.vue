@@ -10,6 +10,8 @@
       </el-carousel>
       <div class="index-table">
         <div class="flex">
+<!-- div(){ -->
+
           <div class="switch title switch-margin">
             <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
               <el-menu-item @click="stateCouncil(index)" v-for="(item, index) in information" :key="index"
@@ -58,72 +60,96 @@
           </div>
         </div>
       </div>
-      <div class="recruit ">
-        <div class="title">
-          <div class="recruit-frist">
-            <h2>公共招聘</h2>
-            <div class="title">
-              <el-tabs style="width:20vw;height: 17vw;" value="0">
-                <el-tab-pane v-for="(item, index) in recruit" :key="index.toString()" :label="item.title"
-                             :name="index.toString()">
-                  <notic-list :list="item.content" class="notic-item"/>
-                  <!-- {{ item.content }} -->
-                </el-tab-pane>
-              </el-tabs>
-            </div>
-            <div>
-              <div class="recruit-box">
-                <div>
-                  <h2>联系我们</h2>
-                </div>
-                <div>便民服务热线：12345</div>
-                <div>宁东基地总值班室：0951-3093761</div>
-                <div>应急值班电话：0951-5918503</div><!-- 18995098099 -->
-                <div>电子邮箱：ndjdgwh@126.com</div>
-                <!--                <div>联系地址：宁夏宁东镇长城路7号企业总部大楼</div>-->
-              </div>
+      <div class="article" style="display: flex;">
+<!--        <img src="../../assets/wenzhang.png">-->
+                <div style="width: 30%;">
+          <div style="font-size: 2vh;font-weight: 900;text-align: center">文章标题</div>
+          <img style="width: 100%;" src="http://ningdong.nx.gov.cn/xwdt_277/202303/W020230306365515915162.jpg">
+          <div>文章内容</div>
+        </div>
+        <div style="width: 70%;">
+          <div style="border: 1px solid darkgray;width: 100%;height: 20vh;display: flex">
+            <img style="width: 30%;" src="http://ningdong.nx.gov.cn/xwdt_277/202303/W020230306365515915162.jpg">
+            <div style="width: 100%;margin:10%;">
+              <div style="font-size: 2vh;font-weight: 900;">文章标题</div>
+              <div>文章内容</div>
             </div>
           </div>
-          <div class="enter">
-            <div class="title">
-              <div class="title size" style="width:31vw;">
-                <div class="font-color">走进</div>
-                <div class="enter-font">公共信息管理平台</div>
-              </div>
-              <notic-table class="notic-item" title="最新通知" more-target="gonglue"/>
-            </div>
+          <div style="border: 1px solid darkgray;width: 100%;height: 20vh;display: flex;">
+            <img style="width: 30%;"  src="http://ningdong.nx.gov.cn/xwdt_277/202303/W020230306365515915162.jpg">
             <div>
-              <el-tabs style="width:100%;height:25vh;" value="0">
-                <el-tab-pane v-for="(item, index) in entertab" :key="index.toString()" :label="item.labels"
-                             :name="index.toString()">
-                  <div class="flex">
-                    <img style="width:180px;height:106px;margin:3%;" :src="item.img">
-                    <div style="margin-top:3%;">
-                      {{ item.texts | limit }}
-                      <a @click="details()" style="color: red;">
-                        [详情]
-                      </a>
-                    </div>
-                  </div>
-                </el-tab-pane>
-              </el-tabs>
+              <div style="font-size: 2vh;font-weight: 900;margin: 10%;">文章标题</div>
+              <div>文章内容</div>
             </div>
-            <el-tabs style="width:100%;height:30vh;margin-top: 4%" value="0">
-              <el-tab-pane v-for="(item, index) in platform" :key="index.toString()" :label="item.title"
-                           :name="index.toString()">
-                <div class="flex">
-                  <div>
-                    <img :src="item.img" style="width:20vw;height:188px;margin:3%;">
-                  </div>
-                  <div class="pane-notic">
-                    <notic-list :list="item.content" class="notic-item"/>
-                  </div>
-                </div>
-              </el-tab-pane>
-            </el-tabs>
           </div>
         </div>
       </div>
+<!--      <div class="recruit ">-->
+<!--        <div class="title">-->
+<!--          <div class="recruit-frist">-->
+<!--            <h2>公共招聘</h2>-->
+<!--            <div class="title">-->
+<!--              <el-tabs style="width:20vw;height: 17vw;" value="0">-->
+<!--                <el-tab-pane v-for="(item, index) in recruit" :key="index.toString()" :label="item.title"-->
+<!--                             :name="index.toString()">-->
+<!--                  <notic-list :list="item.content" class="notic-item"/>-->
+<!--                  &lt;!&ndash; {{ item.content }} &ndash;&gt;-->
+<!--                </el-tab-pane>-->
+<!--              </el-tabs>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              <div class="recruit-box">-->
+<!--                <div>-->
+<!--                  <h2>联系我们</h2>-->
+<!--                </div>-->
+<!--                <div>便民服务热线：12345</div>-->
+<!--                <div>宁东基地总值班室：0951-3093761</div>-->
+<!--                <div>应急值班电话：0951-5918503</div>&lt;!&ndash; 18995098099 &ndash;&gt;-->
+<!--                <div>电子邮箱：ndjdgwh@126.com</div>-->
+<!--                &lt;!&ndash;                <div>联系地址：宁夏宁东镇长城路7号企业总部大楼</div>&ndash;&gt;-->
+<!--              </div>-->
+<!--            </div>-->
+<!--          </div>-->
+<!--          <div class="enter">-->
+<!--            <div class="title">-->
+<!--              <div class="title size" style="width:31vw;">-->
+<!--                <div class="font-color">走进</div>-->
+<!--                <div class="enter-font">公共信息管理平台</div>-->
+<!--              </div>-->
+<!--              <notic-table class="notic-item" title="最新通知" more-target="gonglue"/>-->
+<!--            </div>-->
+<!--            <div>-->
+<!--              <el-tabs style="width:100%;height:25vh;" value="0">-->
+<!--                <el-tab-pane v-for="(item, index) in entertab" :key="index.toString()" :label="item.labels"-->
+<!--                             :name="index.toString()">-->
+<!--                  <div class="flex">-->
+<!--                    <img style="width:180px;height:106px;margin:3%;" :src="item.img">-->
+<!--                    <div style="margin-top:3%;">-->
+<!--                      {{ item.texts | limit }}-->
+<!--                      <a @click="details()" style="color: red;">-->
+<!--                        [详情]-->
+<!--                      </a>-->
+<!--                    </div>-->
+<!--                  </div>-->
+<!--                </el-tab-pane>-->
+<!--              </el-tabs>-->
+<!--            </div>-->
+<!--            <el-tabs style="width:100%;height:30vh;margin-top: 4%" value="0">-->
+<!--              <el-tab-pane v-for="(item, index) in platform" :key="index.toString()" :label="item.title"-->
+<!--                           :name="index.toString()">-->
+<!--                <div class="flex">-->
+<!--                  <div>-->
+<!--                    <img :src="item.img" style="width:20vw;height:188px;margin:3%;">-->
+<!--                  </div>-->
+<!--                  <div class="pane-notic">-->
+<!--                    <notic-list :list="item.content" class="notic-item"/>-->
+<!--                  </div>-->
+<!--                </div>-->
+<!--              </el-tab-pane>-->
+<!--            </el-tabs>-->
+<!--          </div>-->
+<!--        </div>-->
+<!--      </div>-->
     </div>
     <div id="goto-net">
       <div id="net-container">
@@ -257,13 +283,16 @@ export default {
         }, {
           img: 'http://ningdong.nx.gov.cn/ztxc/202112/W020211208409361479182.png',
           url: 'https://zljdj.ndkcpip.cn:8010/ServicePlatform/homePage.do'
-        }, {
-          img: 'http://ningdong.nx.gov.cn/ztxc/202104/W020210402430433032301.jpg',
-          url: 'http://ningdong.nx.gov.cn/ztzl/dsxxjy/'
-        }, {
+        },
+        // {
+        //   img: 'http://ningdong.nx.gov.cn/ztxc/202104/W020210402430433032301.jpg',
+        //   url: 'http://ningdong.nx.gov.cn/ztzl/dsxxjy/'
+        // },
+        {
           img: 'http://ningdong.nx.gov.cn/ztxc/202012/W020210118552774863590.jpg',
           url: 'http://zwfw.nx.gov.cn/ndq/'
-        }, {
+        },
+        {
           img: 'http://ningdong.nx.gov.cn/ztxc/202011/W020210118563445892057.jpg',
           url: ''
         },
@@ -870,5 +899,10 @@ a {
   // ::v-deep .el-menu--horizontal {
   //   border-bottom: none;
   // }
+}
+.article{
+  width: 100%;
+  height: 40vh;
+  //border: 1px solid darkgray;
 }
 </style>

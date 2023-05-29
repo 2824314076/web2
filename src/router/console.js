@@ -1,136 +1,97 @@
 export default [
     {
-        path: '/admin',
+        path: '/home',
         component: () =>
             import(
-                /* webpackChunkName: "console" */ '@/views/console/layout-console/index.vue'
+                /* webpackChunkName: "console" */ '@/views/console/home.vue'
                 ),
-        meta: {
-            title: '后台管理',
-            meta: {
-                title: '公司-后台管理',
-                requireAuth: true,
-            },
-        },
         children: [
             {
-                name: 'adminhome',
-                path: '',
+                name: 'homenews',
+                path: '/homenews/:id',
+                meta:{
+                    keepAlive:true
+                },
                 component: () =>
                     import(
-                        /* webpackChunkName: "console" */ '@/views/console/AdminHome.vue'
-                        ),
+                        /* webpackChunkName: "console" */ '@/views/console/components/home/news'
+                        )
+            },
+            {
+                name: 'articleidnex',
+                path: '/articleidnex',
+                component: () =>
+                    import(
+                        /* webpackChunkName: "console" */ '@/views/console/components/article/index'
+                        )
+            },
+            {
+                name: 'articleview',
+                path: '/articleview',
+                component: () =>
+                    import(
+                        /* webpackChunkName: "console" */ '@/views/console/components/article/view'
+                        )
+            },
+            {
+                name: 'weihuoyunshu',
+                path: '/weihuo',
+                component: () =>
+                    import(
+                        /* webpackChunkName: "console" */ '@/views/show/WeiHuo'
+                        )
+            },
+            {
+                name: 'puhuoyunshu',
+                path: '/puhuo',
+                component: () =>
+                    import(
+                        /* webpackChunkName: "console" */ '@/views/show/PuHuo'
+                        )
+            },{
+                name: 'tieluyunshu',
+                path: 'tielu',
+                component: () =>
+                    import(/* webpackChunkName: "show" */ '@/views/show/TieLu.vue'),
                 meta: {
-                    title: '公司-后台管理',
-                    requireAuth: true,
+                    title: '公铁联运',
                 },
             },
             {
-                name: 'adminintroduce',
-                path: 'introduce',
+                name: 'keyunyunshu',
+                path: 'keyun',
                 component: () =>
-                    import(
-                        /* webpackChunkName: "console" */ '@/views/console/AdminIntroduce.vue'
-                        ),
+                    import(/* webpackChunkName: "show" */ '@/views/show/KeYun.vue'),
                 meta: {
-                    title: '后台管理-公司介绍',
-                    requireAuth: true,
+                    title: '客运',
+                },
+            },{
+                name: 'dazongmaoyi',
+                path: 'maoyi',
+                component: () =>
+                    import(/* webpackChunkName: "show" */ '@/views/show/MaoYi.vue'),
+                meta: {
+                    title: '大宗贸易',
                 },
             },
             {
-                name: 'textmanage',
-                path: 'textmanage',
+                name: 'disanfangfuwu',
+                path: 'thirdservice',
                 component: () =>
                     import(
-                        /* webpackChunkName: "console" */ '@/views/console/TextManage.vue'
+                        /* webpackChunkName: "show" */ '@/views/show/ThirdService.vue'
                         ),
                 meta: {
-                    title: '后台管理-信息管理',
-                    requireAuth: true,
+                    title: '第三方服务',
                 },
             },
             {
-                name: 'adminzhaopin',
-                path: 'zhaopin',
+                name: 'yunhsubianji',
+                path: 'BackstageAdministration',
                 component: () =>
-                    import(
-                        /* webpackChunkName: "console" */ '@/views/console/AdminZhaoPin.vue'
-                        ),
+                    import(/* webpackChunkName: "show" */ '@/views/show/BackstageAdministration.vue'),
                 meta: {
-                    title: '后台管理-招聘管理',
-                    requireAuth: true,
-                },
-            },
-            {
-                name: 'yingpin',
-                path: 'yingpin',
-                component: () =>
-                    import(
-                        /* webpackChunkName: "console" */ '@/views/console/YingPinList.vue'
-                        ),
-                meta: {
-                    title: '后台管理-应聘列表',
-                    requireAuth: true,
-                },
-            },
-            {
-                name: 'noticemanage',
-                path: 'noticemanage',
-                component: () =>
-                    import(
-                        /* webpackChunkName: "console" */ '@/views/console/NoticeManage.vue'
-                        ),
-                meta: {
-                    title: '后台管理-通知管理',
-                    requireAuth: true,
-                },
-            },
-            {
-                name: 'designermanage',
-                path: 'designermanage',
-                component: () =>
-                    import(
-                        /* webpackChunkName: "console" */ '@/views/console/AdminDesigner.vue'
-                        ),
-                meta: {
-                    title: '后台管理-设计师管理',
-                    requireAuth: true,
-                },
-            },
-            {
-                name: 'goodmanage',
-                path: 'goodmanage',
-                component: () =>
-                    import(
-                        /* webpackChunkName: "console" */ '@/views/console/GoodManage.vue'
-                        ),
-                meta: {
-                    title: '后台管理-产品管理',
-                    requireAuth: true,
-                },
-            },
-            {
-                name: 'anlimanage',
-                path: 'anlimanage',
-                component: () =>
-                    import(
-                        /* webpackChunkName: "console" */ '@/views/console/AnLiManage.vue'
-                        ),
-                meta: {
-                    title: '后台管理-案例管理',
-                    requireAuth: true,
-                },
-            },
-            {
-                name: 'bannermanage',
-                path: 'bannermanage',
-                component: () =>
-                    import(
-                        /* webpackChunkName: "console" */ '@/views/console/BannerManage.vue'
-                        ),
-                meta: {
-                    title: '后台管理-轮播图管理',
-                    requireAuth: true,
+                    title: '后台',
                 },
             },
         ],
