@@ -1,5 +1,16 @@
 <template>
   <div class="layout-show">
+    <div class="top">
+      <div class="wrap">
+        <div class="hi">
+          <span style="font-size: 1vh">Hi，欢迎来到宁东基地物流公共信息管理平台！</span>
+        </div>
+        <div class="tool_bar">
+          <!--          <a href="http://www.ndkjcx.com/ndkjcx/dashboard/workplace" target="_blank">登录</a>-->
+        </div>
+
+      </div>
+    </div>
     <el-backtop :bottom="60"></el-backtop>
     <div class="top-bar">
       <div class="layout-log">
@@ -36,15 +47,15 @@
         <!--1.1982d1 3.ffd04b 2.white-->
         <!--        <el-menu-item><img src="/img/logo.png"/></el-menu-item>-->
         <el-menu-item index="index">首页</el-menu-item>
-        <el-menu-item index="jianguan">管理平台</el-menu-item>
+        <el-menu-item index="jianguan">综合监管</el-menu-item>
         <el-submenu index="2">
-          <template slot="title">宁东各局</template>
+          <template slot="title">行业监测</template>
           <el-menu-item class="hover"><a href="http://sztoosun.com:8205/#/login?redirect=%2Fhome">建设和交通局</a>
           </el-menu-item>
-          <el-menu-item class="hover">科技和信息局</el-menu-item>
+          <el-menu-item class="hover">经济发展局</el-menu-item>
         </el-submenu>
         <el-submenu index="3">
-          <template slot="title">综合运输</template>
+          <template slot="title"><a href="/#/enterprises">综合运输</a></template>
           <el-menu-item class="hover" index="weihuo">危货运输</el-menu-item>
           <el-menu-item class="hover" index="puhuo">普货运输</el-menu-item>
           <el-menu-item class="hover" index="tielu">公铁联运</el-menu-item>
@@ -54,25 +65,12 @@
         <el-menu-item index="thirdservice">第三方服务</el-menu-item>
       </el-menu>
     </div>
-
     <el-main class="show-main">
       <router-view></router-view>
     </el-main>
     <div class="footer">
       <div class="flex footer-container">
-        <div class="dzjgbs">
-          <a href="https://bszs.conac.cn/sitename?method=show&id=54A18E2E0E011A7AE053012819AC5512" target="_blank">
-            <img src="@/assets/home_img/yc-icon-11.png" style="width: 100px; height: 100px"/>
-          </a>
-          <a href="https://zfwzgl.www.gov.cn/exposure/jiucuo.html?site_code=6401000028&url=http%3A%2F%2Fwww.yinchuan.gov.cn%2F"
-             target="_blank">
-            <img src="@/assets/home_img/jiucuo.png"/>
-          </a>
-        </div>
         <div class="m-l-200 footer-right" v-cloak>
-          <p>联系电话：19809505825</p>
-          <p>地址：宁东管委会</p>
-          <p>主办方：宁夏宁东科技创业投资有限公司</p>
           <p>备案号：</p>
           <p>
             建议您使用IE9以上版本、Edge、Chrome、Firefox、360等主流浏览器浏览本网站
@@ -156,7 +154,8 @@ export default {
 
 <style lang="scss" scoped>
 .layout-show {
-  min-width: 1200px;
+  width: 100%;
+  height: 100%;
 
   .header {
     width: 100%;
@@ -179,14 +178,16 @@ export default {
 .footer {
   background-color: #4169e1;
   color: white;
-  height: 220px;
+  height: 10vh;
 
   .footer-container {
-    width: 1200px;
-    margin: 0 auto;
+    width: 50vw;
+    margin: 0vh auto;
   }
 
   .footer-right {
+    //margin-top: 5vh;
+
     p {
       margin-top: 16px;
     }
@@ -203,7 +204,6 @@ a {
 }
 
 .footer > div {
-  height: 190px;
   font-size: 15px;
 }
 
@@ -351,4 +351,21 @@ a {
   padding: 0;
 }
 
+.top {
+  .wrap {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .tool_bar {
+    color: #1786df;
+  }
+}
+
+
+.hi {
+  width: 100%;
+  background: #eff1f6;
+  padding-left: 20%;
+}
 </style>

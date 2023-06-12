@@ -11,12 +11,12 @@ import Vue2Editor from 'vue2-editor'
 import axios from 'axios'
 import '@/styles/index.scss'
 import '@/permission'
-import  VueQuillEditor from 'vue-quill-editor'//调用编辑器
-
+import VueQuillEditor from 'vue-quill-editor' //调用编辑器
 //样式
 import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
+import "@/css/iconfont.css"
 
 //使用
 Vue.config.productionTip = false

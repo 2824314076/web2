@@ -5,10 +5,6 @@
         <div>
           <div style="display:flex;justify-content: space-between;">
             <div class="supervise-breadcrumb">
-              <el-breadcrumb separator-class="el-icon-arrow-right">
-                <el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
-                <el-breadcrumb-item>公共信息管理平台</el-breadcrumb-item>
-              </el-breadcrumb>
             </div>
             <div class="supervise-login">
               <el-button @click="open">登录</el-button>

@@ -1,0 +1,76 @@
+/* 在线链接服务仅供平台体验和调试使用，平台不承诺服务的稳定性，企业客户需下载字体包自行发布使用并做好备份。 */
+@font-face {
+  font-family: 'iconfont';  /* Project id 4043722 */
+  src: url('//at.alicdn.com/t/c/font_4043722_9r3i8a9wt3j.woff2?t=1686033853899') format('woff2'),
+  url('//at.alicdn.com/t/c/font_4043722_9r3i8a9wt3j.woff?t=1686033853899') format('woff'),
+  url('//at.alicdn.com/t/c/font_4043722_9r3i8a9wt3j.ttf?t=1686033853899') format('truetype');
+}
+
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 3vh;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-rencaifuwu:before {
+  content: "\e616";
+}
+
+.icon-zijinzhangbian:before {
+  content: "\e619";
+}
+
+.icon-huodong:before {
+  content: "\e614";
+}
+
+.icon-weixin:before {
+  content: "\e647";
+}
+
+.icon-fabu:before {
+  content: "\e621";
+}
+
+.icon-minyizhengji:before {
+  content: "\e664";
+}
+
+.icon-xinxihuaxiangmu:before {
+  content: "\e76b";
+}
+
+.icon-disanfangdanbao:before {
+  content: "\e96f";
+}
+
+.icon-shouye:before {
+  content: "\e64f";
+}
+
+.icon-yunshuzhongwuliu-xianxing:before {
+  content: "\e882";
+}
+
+.icon-guanlipingtai:before {
+  content: "\e657";
+}
+
+.icon-youzhimaoyiqu:before {
+  content: "\e881";
+}
+
+.icon-zhengfu:before {
+  content: "\e61e";
+}
+
+.icon-shouqicaidan:before {
+  content: "\e622";
+}
+
+.icon-zhankaicaidan:before {
+  content: "\e624";
+}
+
